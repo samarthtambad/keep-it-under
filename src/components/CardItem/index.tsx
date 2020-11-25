@@ -17,7 +17,7 @@ export interface CardProps {
 const CardItem: React.FC<Props> = (props) => {
     const ref = useRef<HTMLDivElement>(null)
     return (
-        <div style={{ height: 80 }} className="d-inline-block ml-2 mb-2">
+        <div style={{ height: 100 }} className="d-inline-block ml-2 mb-2">
             <img className="h-100" src={props.data['image']} alt="This is your card" />
         </div>
     );
