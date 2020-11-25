@@ -6,6 +6,7 @@ import GamePlay from '../GamePlay';
 import {validateName, validateNumberInRange} from './validation'
 
 const App: React.FC = () => {
+  const [startNewGame, setStartNewGame] = useState(false)
   const [gameInfo, setGameInfo] = useState({
         firstPlayerName: "",
         secondPlayerName: "",
@@ -23,6 +24,12 @@ const App: React.FC = () => {
   const handleGameInfoFormSubmit = (data) => {
     console.log("handleGameInfoFormSubmit", data)
     setGameInfo(data)
+    setStartNewGame(true)
+  }
+
+  const handleOnGameStart = () => {
+    console.log("Game Started")
+    setStartNewGame(false)
   }
 
   return (
@@ -30,7 +37,7 @@ const App: React.FC = () => {
       <h1 className="h1 text-center mt-3 mb-3">Keep It Under</h1>
       <div className="row ">
         <GameInfoForm className="col-sm-3" initialValues={gameInfo} validate={validate} onSubmit={handleGameInfoFormSubmit} />
-        <GamePlay className="col-sm-9"/>
+        <GamePlay className="col-sm-9" gameInfo={gameInfo} startNewGame={startNewGame} onGameStart={handleOnGameStart}/>
       </div>
     </div>
   );
