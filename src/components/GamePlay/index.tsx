@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
-
+import { DragDropContext } from 'react-beautiful-dnd'
 import {Card, cardsList} from '../../utils/cards'
 import {shuffle} from '../../utils/deck'
 import Hand from '../Hand'
@@ -38,12 +38,18 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
         }
     }, [startNewGame, onGameStart, gameInfo])
 
+    const onDragEnd = (result) => {
+        // TODO
+    }
+
     return (
         <div className={className}>
-            <div className="border rounded mr-3 p-3">
-                <Hand cards={firstPlayerCards} className=""/>
-                <Hand cards={secondPlayerCards} className=""/>
-            </div>
+            <DragDropContext onDragEnd={onDragEnd}>
+                <div className="border rounded mr-3 p-3">
+                    <Hand player="player-1" cards={firstPlayerCards} className=""/>
+                    <Hand player="player-2" cards={secondPlayerCards} className=""/>
+                </div>
+            </DragDropContext>
         </div>
     );
 };
