@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import './style.css';
 
 interface Props {
@@ -6,7 +6,16 @@ interface Props {
     data: Object
 }
 
+export interface CardProps {
+  id: any
+  text: string
+  data: object
+  index: number
+  moveCard: (dragIndex: number, hoverIndex: number) => void
+}
+
 const Card: React.FC<Props> = (props) => {
+    const ref = useRef<HTMLDivElement>(null)
     return (
         <div style={{ height: 80 }} className="d-inline-block ml-2 mb-2">
             <img className="h-100" src={props.data['image']} alt="This is your card" />
