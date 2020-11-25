@@ -14,7 +14,7 @@ export interface CardProps {
   moveCard: (dragIndex: number, hoverIndex: number) => void
 }
 
-const Card: React.FC<Props> = (props) => {
+const CardItem: React.FC<Props> = (props) => {
     const ref = useRef<HTMLDivElement>(null)
     return (
         <div style={{ height: 80 }} className="d-inline-block ml-2 mb-2">
@@ -23,4 +23,4 @@ const Card: React.FC<Props> = (props) => {
     );
 };
 
-export default Card;
+export default CardItem;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
 
-import {Card, cardsList} from './cards'
-import {shuffle} from './utils'
+import {Card, cardsList} from '../../utils/cards'
+import {shuffle} from '../../utils/deck'
 import Hand from '../Hand'
 
 interface GamePlayProps {
@@ -41,7 +41,8 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
     return (
         <div className={className}>
             <div className="border rounded mr-3 p-3">
-                <Hand className=""/>
+                <Hand cards={firstPlayerCards} className=""/>
+                <Hand cards={secondPlayerCards} className=""/>
             </div>
         </div>
     );

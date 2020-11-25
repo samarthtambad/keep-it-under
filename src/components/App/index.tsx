@@ -3,7 +3,7 @@ import './style.css';
 
 import GameInfoForm from '../GameInfoForm';
 import GamePlay from '../GamePlay';
-import {validateName, validateNumberInRange} from './validation'
+import {validateName, validateNumberInRange} from '../../utils/validation'
 
 const App: React.FC = () => {
   const [startNewGame, setStartNewGame] = useState(false)
