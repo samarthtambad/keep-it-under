@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './style.css';
 
-import Card from '../Card'
+import Card from '../Card';
 
 interface Props {
     className?: string
@@ -271,14 +271,14 @@ const Hand: React.FC<Props> = (props) => {
         "suit": "SPADES"
       }
   ]
-  
-  cards.forEach((item) => {
-    console.log(item['images']['png'])
-  })
 
-    return (cards.map((item, index) => {
-        return <Card imgURL={item['images']['png']} key={`${index}-{item.code}`} />
-    }));
+    return (
+      <div>
+        {cards.map((card, index) => (
+          <Card data={card} key={`${index}-{card.code}`} />
+        ))}
+      </div>
+    );
 };
 
 export default Hand;

@@ -11,7 +11,7 @@ const GamePlay: React.FC<Props> = (props) => {
     return (
         <div className={props.className}>
             <div className="border rounded mr-3 p-3">
-                <Hand />
+                <Hand className=""/>
             </div>
         </div>
     );
