@@ -15,14 +15,16 @@ const CardDropArea = styled.div`
 
 interface GameArenaProps {
   currentPlayer: string,
-  onPlayerMove: () => void,
+  totalValue: number,
+  goalNumber: number,
   className?: string
 }
 
-const GameArena: React.FC<GameArenaProps> = ({currentPlayer, className}) => {
+const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, goalNumber, className}) => {
 
   return (
-    <Container className="border rounded mr-3 p-3">
+    <Container className="border rounded mt-2 mb-2 p-3">
+      <h6>GAME ARENA</h6>
       <Droppable droppableId="arena" type={currentPlayer} direction="horizontal">
         {(provided) => (
           <CardDropArea ref={provided.innerRef} {...provided.droppableProps}>

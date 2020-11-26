@@ -12,16 +12,8 @@ interface Props {
     className?: string
 }
 
-export interface CardProps {
-  id: any
-  text: string
-  data: object
-  index: number
-  moveCard: (dragIndex: number, hoverIndex: number) => void
-}
-
 const CardItem: React.FC<Props> = ({data, index, disabled, className}) => {
-    const ref = useRef<HTMLDivElement>(null)
+    
     return (
         <Draggable draggableId={data['code']} isDragDisabled={disabled} index={index}>
             {(provided) => (
