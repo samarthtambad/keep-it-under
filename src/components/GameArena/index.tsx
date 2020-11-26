@@ -11,12 +11,10 @@ const Container = styled.div`
 const CardDropArea = styled.div`
   min-height: 200px;
 `
-const ArenaContainer = styled.div`
-`
-const GameInfoArea = styled.div`
-`
-const GameStatusArea = styled.div`
-`
+const ArenaContainer = styled.div``
+const GameInfoArea = styled.div``
+const GameStatusArea = styled.div``
+const GameArenaTitleContainer = styled.div``
 
 interface GameArenaProps {
   currentPlayer: string,
@@ -43,7 +41,10 @@ const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, goalNum
           <CardDropArea ref={provided.innerRef} {...provided.droppableProps}>
             <ArenaContainer className={`row ${(currentPlayer === "")? "d-none" : "" }`}>
               <GameStatusArea className="col-sm-7">
-                <h6 className="pb-3">GAME ARENA</h6>
+                <GameArenaTitleContainer className="pb-3">
+                  <h6 className="d-inline-block w-50">GAME ARENA</h6>
+                  <h6 className="d-inline-block h6 w-50 text-muted text-right"><small><i>Drop your cards into this area</i></small></h6>
+                </GameArenaTitleContainer>
                 <h1 className="text-center display-1">{(totalValue <= goalNumber) ? totalValue : "Game Over!"}</h1>
                 <h1 className="text-center text-muted">{(totalValue <= goalNumber) ? "Total Value" : `${player.split("-").join(" ").toUpperCase()} loses`}</h1>
               </GameStatusArea>
