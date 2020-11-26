@@ -145,7 +145,7 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
             <DragDropContext onDragEnd={onDragEnd}>
                 <GamePlayAreaContainer className="border rounded p-3">
                     <Hand player="player-1" disabled={currentPlayer !== "player-1"} cards={firstPlayerCards} className=""/>
-                    <GameArena currentPlayer={currentPlayer} totalValue={totalValue} goalNumber={gameInfo['goalNumber']} />
+                    <GameArena currentPlayer={currentPlayer} totalValue={totalValue} cards={playedCards} goalNumber={gameInfo['goalNumber']} />
                     <Hand player="player-2" disabled={currentPlayer !== "player-2"} cards={secondPlayerCards} className=""/>
                 </GamePlayAreaContainer>
             </DragDropContext>

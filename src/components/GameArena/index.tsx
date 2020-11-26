@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './style.css';
 import styled from 'styled-components'
 import { Droppable } from 'react-beautiful-dnd'
+import {Card} from '../../utils/cards'
+// import CardItem from '../CardItem';
 
 const Container = styled.div`
   min-height: 200px;
@@ -9,6 +11,10 @@ const Container = styled.div`
 const CardDropArea = styled.div`
   min-height: 200px;
 `
+// const CardItemList = styled.div`
+//   display: flex;
+//   overflow: scroll;
+// `
 const ArenaContainer = styled.div``
 const GameInfoArea = styled.div``
 const GameStatusArea = styled.div``
@@ -17,11 +23,12 @@ const GameArenaTitleContainer = styled.div``
 interface GameArenaProps {
   currentPlayer: string,
   totalValue: number,
+  cards: Array<Card>,
   goalNumber: number,
   className?: string
 }
 
-const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, goalNumber, className}) => {
+const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, cards, goalNumber, className}) => {
   const [player, setPlayer] = useState(currentPlayer)
 
   useEffect(() => {
@@ -51,7 +58,6 @@ const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, goalNum
                 <h5 className="text-right"><span className="text-muted">Last Move: </span> {player.split("-").join(" ").toUpperCase()}</h5>
               </GameInfoArea>
             </ArenaContainer>
-            
             {provided.placeholder}
           </CardDropArea>
         )}
