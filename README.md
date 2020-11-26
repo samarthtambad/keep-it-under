@@ -2,14 +2,14 @@
 
 An original two-player strategy card game I created that derives inspiration from Blackjack and Nim. The app is built using React.
 
-### Game Rules
+## Game Rules
 
 1. Pick a goal number (G: between 21 and 120) and pick the number of cards (N: between G/5 and 26) to be dealt to each player. Then start the game.
 2. Each player is dealt (face up) N cards randomly picked from a deck of 52 cards.Each card has an associated value (2-10 have corresponding value, J/Q/K have value of 10 and ACE can have a value of 1 or 11). (Note: ACE will retroactively change its value from 11 to 1 if the total value exceeds G)
 3. The first player will make the first move. Players take turns and play a card from their hand by dragging it from their hand to the game arena.
 4. The total value of cards played cannot exceed G. The player who gets the total to exceed G loses and the other player wins.
 
-#### Constraints
+### Constraints
 
 1. 21 <= G <= 120
 2. G/5 <= N <= 26
@@ -55,7 +55,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### Learn More
+## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
