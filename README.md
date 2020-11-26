@@ -14,9 +14,7 @@ An original two-player strategy card game I created that derives inspiration fro
 1. 21 <= G <= 120
 2. G/5 <= N <= 26
 
-## TODO
-
-# Getting Started with Create React App
+## Building and running the App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
