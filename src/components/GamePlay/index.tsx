@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
+import styled from 'styled-components'
 import { DragDropContext } from 'react-beautiful-dnd'
 import {Card, cardsList} from '../../utils/cards'
 import {shuffle} from '../../utils/deck'
 
 import Hand from '../Hand'
 import GameArena from '../GameArena'
+
+const Container = styled.div``
+const GamePlayAreaContainer = styled.div``
 
 interface GamePlayProps {
     gameInfo: object,
@@ -140,15 +144,15 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
     }
 
     return (
-        <div className={className}>
+        <Container>
             <DragDropContext onDragEnd={onDragEnd}>
-                <div className="border rounded mr-3 p-3">
+                <GamePlayAreaContainer className="border rounded p-3">
                     <Hand player="player-1" disabled={currentPlayer !== "player-1"} cards={firstPlayerCards} className=""/>
                     <GameArena currentPlayer={currentPlayer} totalValue={totalValue} goalNumber={gameInfo['goalNumber']} />
                     <Hand player="player-2" disabled={currentPlayer !== "player-2"} cards={secondPlayerCards} className=""/>
-                </div>
+                </GamePlayAreaContainer>
             </DragDropContext>
-        </div>
+        </Container>
     );
 };
 

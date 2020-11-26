@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
+import styled from 'styled-components'
+
+const Container = styled.div``
 
 interface FormElementProps {
     id: string,
@@ -71,20 +74,18 @@ const GameInforForm: React.FC<GameInfoProps> = ({initialValues, validate, onSubm
     }
 
     return (
-        <div className={className}>
-            <div className="border rounded ml-3 p-3">
-                <h1 className="h4 mb-4">Game Information</h1>
-                <FormElement id="firstPlayerName" type="text" data={values} validate={validate} 
-                    label="Player 1" placeholder="Enter name" onChange={handleOnChange} />
-                <FormElement id="secondPlayerName" type="text" data={values} validate={validate} 
-                    label="Player 2" placeholder="Enter name" onChange={handleOnChange} />
-                <FormElement id="goalNumber" type="number" data={values} validate={validate} 
-                    label="Goal Num (G)" placeholder="Enter goal number" onChange={handleOnChange} />
-                <FormElement id="numCards" type="number" data={values} validate={validate} 
-                    label="Num Cards (N)" placeholder="Enter number of cards" onChange={handleOnChange} />
-                <button className="btn btn-primary btn-sm" type="button" disabled={error} onClick={handleStartNewGame}>Start New Game</button>
-            </div>
-        </div>
+        <Container>
+            <h5 className="mb-3">Game Information</h5>
+            <FormElement id="firstPlayerName" type="text" data={values} validate={validate} 
+                label="Player 1" placeholder="Enter name" onChange={handleOnChange} />
+            <FormElement id="secondPlayerName" type="text" data={values} validate={validate} 
+                label="Player 2" placeholder="Enter name" onChange={handleOnChange} />
+            <FormElement id="goalNumber" type="number" data={values} validate={validate} 
+                label="Goal Num (G)" placeholder="Enter goal number" onChange={handleOnChange} />
+            <FormElement id="numCards" type="number" data={values} validate={validate} 
+                label="Num Cards (N)" placeholder="Enter number of cards" onChange={handleOnChange} />
+            <button className="btn btn-primary btn-sm" type="button" disabled={error} onClick={handleStartNewGame}>Start New Game</button>
+        </Container>
     );
 };
 
