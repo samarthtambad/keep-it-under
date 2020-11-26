@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
 import styled from 'styled-components'
+import {validateName, validateNumberInRange} from '../../utils/validation'
 
 const Container = styled.div``
 
@@ -42,14 +43,19 @@ const FormElement: React.FC<FormElementProps> = ({id, type, data, label, validat
 
 interface GameInfoProps {
     initialValues: Object,
-    validate: Object,
     onSubmit: (data: any) => void,
     className?: string
 }
 
-const GameInforForm: React.FC<GameInfoProps> = ({initialValues, validate, onSubmit, className}) => {
+const GameInforForm: React.FC<GameInfoProps> = ({initialValues, onSubmit, className}) => {
     const [values, setValues] = useState(initialValues)
     const [error, setError] = useState(true)
+    const [validate, setValidate] = useState({
+        firstPlayerName: (name) => validateName("First Player name", name, 3),
+        secondPlayerName: (name) => validateName("Second Player name", name, 3),
+        goalNumber: (value) => validateNumberInRange("Goal number", value, 21, 120),
+        numCards: (value) => validateNumberInRange("Number of cards", value, Math.ceil(values['goalNumber']/5), 26)
+    })
     
     const handleOnChange = (event) => {
         const fieldName = event.target.id
@@ -57,6 +63,15 @@ const GameInforForm: React.FC<GameInfoProps> = ({initialValues, validate, onSubm
         const fieldValue = (fieldType === "number") ? parseInt(event.target.value) : event.target.value
         setValues({...values, [fieldName]:fieldValue })
     }
+
+    useEffect(() => {
+        setValidate({
+        firstPlayerName: (name) => validateName("First Player name", name, 3),
+        secondPlayerName: (name) => validateName("Second Player name", name, 3),
+        goalNumber: (value) => validateNumberInRange("Goal number", value, 21, 120),
+        numCards: (value) => validateNumberInRange("Number of cards", value, Math.ceil(values['goalNumber']/5), 26)
+    })
+    }, [values])
 
     useEffect(() => {
         var isError = false

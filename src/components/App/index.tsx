@@ -16,22 +16,14 @@ const Rule = styled.li`
   text-align: justify;
 `
 
-
 const App: React.FC = () => {
   const [startNewGame, setStartNewGame] = useState(false)
   const [gameInfo, setGameInfo] = useState({
         firstPlayerName: "",
         secondPlayerName: "",
-        goalNumber: 21,
-        numCards: 10
+        goalNumber: 0,
+        numCards: 0
     })
-  
-  const validate = {
-    firstPlayerName: (name) => validateName("First Player name", name, 3),
-    secondPlayerName: (name) => validateName("Second Player name", name, 3),
-    goalNumber: (value) => validateNumberInRange("Goal number", value, 21, 120),
-    numCards: (value) => validateNumberInRange("Number of cards", value, 8, 26)
-  }
 
   const handleGameInfoFormSubmit = (data) => {
     console.log("handleGameInfoFormSubmit", data)
@@ -48,7 +40,7 @@ const App: React.FC = () => {
       <Container className="row p-3 ml-0 mr-0">
         <GameInfoContainer className="col-sm-3 pl-0 pr-0">
           <GameInfoFormContainer className="border rounded p-3 mb-3">
-            <GameInfoForm initialValues={gameInfo} validate={validate} onSubmit={handleGameInfoFormSubmit} />
+            <GameInfoForm initialValues={gameInfo} onSubmit={handleGameInfoFormSubmit} />
           </GameInfoFormContainer>
           <GameRulesContainer className="border rounded p-3">
             <h5 className="">Game Rules</h5>
