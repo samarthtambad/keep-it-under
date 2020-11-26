@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import './style.css';
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'

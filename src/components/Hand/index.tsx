@@ -2,7 +2,7 @@ import React from 'react'
 import './style.css';
 import styled from 'styled-components'
 import { Droppable } from 'react-beautiful-dnd'
-import {Card, cardsList} from '../../utils/cards'
+import {Card} from '../../utils/cards'
 import CardItem from '../CardItem';
 
 const Container = styled.div`

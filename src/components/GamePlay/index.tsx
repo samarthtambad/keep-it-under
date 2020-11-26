@@ -36,8 +36,6 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
                 tmpFirstPlayerCards.push(shuffledDeck[i])
                 tmpSecondPlayerCards.push(shuffledDeck[i+1])
             }
-            // console.log(tmpFirstPlayerCards)
-            // console.log(tmpSecondPlayerCards)
             setCurrentPlayer("player-1")
             setFirstPlayerCards(tmpFirstPlayerCards)
             setSecondPlayerCards(tmpSecondPlayerCards)
@@ -75,7 +73,7 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
                 aces -= 1
             }
         }
-        console.log(total)
+        // console.log(total)
         setTotalValue(total)
     }, [playedCards, gameInfo])
 
@@ -87,7 +85,6 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
     }, [totalValue, gameInfo])
     
     const onDragEnd = (result) => {
-        console.log(result)
         const { destination, source, draggableId } = result
         
         // drag destination is null
