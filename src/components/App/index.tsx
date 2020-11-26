@@ -45,13 +45,13 @@ const App: React.FC = () => {
           <GameRulesContainer className="border rounded p-3">
             <h5 className="">Game Rules</h5>
             <RulesList className="pl-3 pr-3 pt-2">
-              <Rule>Pick a goal number (G: between 21 and 120) and pick the number of cards (N: between 8 and 26) to be dealt to each player.</Rule>
+              <Rule>Pick a goal number (G: [21, 120]) and pick the number of cards (N: [G/5, 26]) to be dealt to each player. Then start the game.</Rule>
               <Rule>
-                Each player is dealt (face up) N cards randomly picked from a deck of 52 cards. 
-                <i>Each card has an associated value (2-10 have corresponding value, J/Q/K have value of 10 and A can have a value of 1 or 11).</i>
+                Each player is dealt (face up) N cards randomly picked from a deck of 52 cards. <i>Each card has an associated value (2-10 have corresponding value, J/Q/K have value of 10 and ACE can have a value of 1 or 11). 
+                (<b>Note:</b> ACE will default to a value of 11 and will retroactively change its value to 1 if the total value exceeds G) </i>
               </Rule>
               <Rule>
-                The players take turns and play a card from their hand by dragging it from their hand to the game arena. 
+                The first player will make the first move. Players take turns and play a card from their hand by dragging it to the game arena.
               </Rule>
               <Rule>
                 The total value of cards played cannot exceed G. The player who gets the total to exceed G loses and the other player wins.

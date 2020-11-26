@@ -28,7 +28,7 @@ const Hand: React.FC<HandProps> = ({player, cards, disabled, className}) => {
       <h6>{player.split("-").join(" ").toUpperCase()}</h6>
       <Droppable droppableId={player} type={player} direction="horizontal">
         {(provided) => (
-          <CardItemList ref={provided.innerRef} {...provided.droppableProps}>
+          <CardItemList id="player-hand" ref={provided.innerRef} {...provided.droppableProps}>
             {cards.map((card, index) => <CardItem data={card} index={index} disabled={disabled} key={`${index}-${card.code}`} /> )}
             {provided.placeholder}
           </CardItemList>

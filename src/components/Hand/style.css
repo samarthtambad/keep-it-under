@@ -1,0 +1,3 @@
+#player-hand :not(:first-child) {
+  margin-left: -3em;
+}
