@@ -63,8 +63,8 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
             }
         })
         while(aces > 0) {
-            if(total + (aces * 10) <= goalNumber) {
-                total += (aces * 10)
+            if(total + (aces * 11) <= goalNumber) {
+                total += (aces * 11)
                 aces = 0
             } else {
                 total += 1
