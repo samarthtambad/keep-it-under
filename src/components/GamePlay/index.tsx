@@ -78,7 +78,7 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
     useEffect(() => {
         const goalNumber = gameInfo['goalNumber']
         if(totalValue > goalNumber) {   // game over
-            setCurrentPlayer("")
+            setCurrentPlayer("over")
         }
     }, [totalValue, gameInfo])
     
