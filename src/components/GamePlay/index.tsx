@@ -3,7 +3,9 @@ import './style.css';
 import { DragDropContext } from 'react-beautiful-dnd'
 import {Card, cardsList} from '../../utils/cards'
 import {shuffle} from '../../utils/deck'
+
 import Hand from '../Hand'
+import GameArena from '../GameArena'
 
 interface GamePlayProps {
     gameInfo: object,
@@ -13,6 +15,7 @@ interface GamePlayProps {
 }
 
 const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart, className}) => {
+    const [currentPlayer, setCurrentPlayer] = useState("")
     const [firstPlayerCards, setFirstPlayerCards] = useState(Array<Card>())
     const [secondPlayerCards, setSecondPlayerCards] = useState(Array<Card>())
     const [playedCards, setPlayedCards] = useState(Array<Card>())
@@ -30,6 +33,7 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
             }
             // console.log(tmpFirstPlayerCards)
             // console.log(tmpSecondPlayerCards)
+            setCurrentPlayer("player-1")
             setFirstPlayerCards(tmpFirstPlayerCards)
             setSecondPlayerCards(tmpSecondPlayerCards)
             setPlayedCards([])
@@ -38,16 +42,34 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
         }
     }, [startNewGame, onGameStart, gameInfo])
 
+    const onDragStart = (result) => {
+        console.log(result)
+    }
+    
     const onDragEnd = (result) => {
-        // TODO
+        console.log(result)
+        const { destination, source, draggableId } = result
+        if(!destination) {
+            return
+        }
+        if(destination.droppableId === source.droppableId && destination.index === source.index) {
+            return 
+        }
+        const card = firstPlayerCards[source.index]
+        console.log(card)
+    }
+
+    const handleOnPlayerMove = () => {
+        
     }
 
     return (
         <div className={className}>
-            <DragDropContext onDragEnd={onDragEnd}>
+            <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
                 <div className="border rounded mr-3 p-3">
-                    <Hand player="player-1" cards={firstPlayerCards} className=""/>
-                    <Hand player="player-2" cards={secondPlayerCards} className=""/>
+                    <Hand player="player-1" disabled={currentPlayer !== "player-1"} cards={firstPlayerCards} className=""/>
+                    <GameArena currentPlayer={currentPlayer} onPlayerMove={handleOnPlayerMove} />
+                    <Hand player="player-2" disabled={currentPlayer !== "player-2"} cards={secondPlayerCards} className=""/>
                 </div>
             </DragDropContext>
         </div>

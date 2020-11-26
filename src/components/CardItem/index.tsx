@@ -8,6 +8,7 @@ const Container = styled.div``
 interface Props {
     data: Object,
     index: number,
+    disabled: boolean,
     className?: string
 }
 
@@ -19,10 +20,10 @@ export interface CardProps {
   moveCard: (dragIndex: number, hoverIndex: number) => void
 }
 
-const CardItem: React.FC<Props> = ({data, index, className}) => {
+const CardItem: React.FC<Props> = ({data, index, disabled, className}) => {
     const ref = useRef<HTMLDivElement>(null)
     return (
-        <Draggable draggableId={data['code']} index={index}>
+        <Draggable draggableId={data['code']} isDragDisabled={disabled} index={index}>
             {(provided) => (
                 <Container {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                     <div style={{ height: 100 }} className="d-inline-block ml-2 mb-2">
