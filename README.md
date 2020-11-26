@@ -4,7 +4,7 @@ An original two-player strategy card game I created that derives inspiration fro
 
 ## Rules of the game
 
-1. Pick a goal number (G: between 21 and 120) and pick the number of cards (N: between 8 and 26) to be dealt to each player. Then start the game.
+1. Pick a goal number (G: between 21 and 120) and pick the number of cards (N: between G/5 and 26) to be dealt to each player. Then start the game.
 2. Each player is dealt (face up) N cards randomly picked from a deck of 52 cards.Each card has an associated value (2-10 have corresponding value, J/Q/K have value of 10 and A can have a value of 1 or 11).
 3. The first player will make the first move. Players take turns and play a card from their hand by dragging it from their hand to the game arena.
 4. The total value of cards played cannot exceed G. The player who gets the total to exceed G loses and the other player wins.
