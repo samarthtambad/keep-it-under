@@ -54,7 +54,7 @@ const App: React.FC = () => {
                 The first player will make the first move. Players take turns and play a card from their hand by dragging it to the game arena.
               </Rule>
               <Rule>
-                The total value of cards played cannot exceed G. The player who gets the total to exceed G loses and the other player wins.
+                The total value of cards played cannot exceed the goal value (G). The player whose move raises the total value above G loses and the other player wins.
               </Rule>
             </RulesList>
           </GameRulesContainer>
