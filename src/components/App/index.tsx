@@ -3,7 +3,6 @@ import './style.css';
 import styled from 'styled-components'
 import GameInfoForm from '../GameInfoForm';
 import GamePlay from '../GamePlay';
-import {validateName, validateNumberInRange} from '../../utils/validation'
 
 const Container = styled.div``
 const GameInfoContainer = styled.div``
