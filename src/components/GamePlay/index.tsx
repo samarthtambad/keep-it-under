@@ -10,6 +10,58 @@ import GameArena from '../GameArena'
 
 const Container = styled.div``
 const GamePlayAreaContainer = styled.div``
+const PopupContainer = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    outline: 0;
+    background-color: rgba(0,0,0,0.7);
+`
+
+interface PopupProps {
+    activate: boolean,
+    handleSubmit: (value) => void
+}
+
+const Popup: React.FC<PopupProps> = ({activate, handleSubmit}) => {
+    const [active, setActive] = useState(activate)
+
+    const onChooseOne = () => {
+        handleSubmit(1)
+        setActive(false)
+    }
+
+    const onChooseEleven = () => {
+        handleSubmit(11)
+        setActive(false)
+    }
+
+    useEffect(() => {
+        setActive(activate)
+    }, [activate])
+
+    return (
+        <PopupContainer className={`${(active)? "d-block" : "d-none" } `}>
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="staticBackdropLabel">Select ACE value</h5>
+                </div>
+                <div className="modal-body">
+                    Please select a value for the ACE card you are playing. <br/>
+                    <b>Note: </b> This value will be assigned to this particular ACE and cannot be changed for the duration of the game.
+                </div>
+                <div className="modal-footer">
+                    <button type="button" onClick={onChooseOne} className="btn btn-primary" data-dismiss="modal">Choose 1</button>
+                    <button type="button" onClick={onChooseEleven} className="btn btn-primary">Choose 11</button>
+                </div>
+                </div>
+            </div>
+        </PopupContainer>
+    );
+}
 
 interface GamePlayProps {
     gameInfo: object,
@@ -24,6 +76,8 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
     const [secondPlayerCards, setSecondPlayerCards] = useState(Array<Card>())
     const [playedCards, setPlayedCards] = useState(Array<Card>())
     const [totalValue, setTotalValue] = useState(0)
+    const [activatePopup, setActivatePopup] = useState(false)
+    const [aceValues, setAceValues] = useState(Array<number>())
 
     useEffect(() => {
         if(startNewGame) {
@@ -46,14 +100,15 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
     }, [startNewGame, onGameStart, gameInfo])
 
     useEffect(() => {
-        const goalNumber = gameInfo['goalNumber']
         var total = 0
-        var aces = 0
+        var aceIdx = 0
         playedCards.forEach((card) => {
             const value = card['value']
             switch(value) {
                 case "ACE":
-                    aces += 1
+                    const aceValue = aceValues[aceIdx]
+                    total += aceValue
+                    aceIdx += 1
                     break
                 case "JACK":
                 case "QUEEN":
@@ -64,18 +119,9 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
                     total += parseInt(value)
             }
         })
-        while(aces > 0) {
-            if(total + (aces * 11) <= goalNumber) {
-                total += (aces * 11)
-                aces = 0
-            } else {
-                total += 1
-                aces -= 1
-            }
-        }
         // console.log(total)
         setTotalValue(total)
-    }, [playedCards, gameInfo])
+    }, [playedCards, gameInfo, aceValues])
 
     useEffect(() => {
         const goalNumber = gameInfo['goalNumber']
@@ -85,7 +131,7 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
     }, [totalValue, gameInfo])
     
     const onDragEnd = (result) => {
-        const { destination, source, draggableId } = result
+        const { destination, source } = result
         
         // drag destination is null
         if(!destination) {
@@ -107,6 +153,9 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
                 tmpPlayedCards.push(card)
                 setFirstPlayerCards(tmpFirstPlayerCards)
                 setPlayedCards(tmpPlayedCards)
+                if(card['value'] === "ACE") {
+                    setActivatePopup(true)
+                }
                 setCurrentPlayer("player-2")
             } else if(source.droppableId === "player-2") {
                 const card = secondPlayerCards[source.index]
@@ -116,6 +165,9 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
                 tmpPlayedCards.push(card)
                 setSecondPlayerCards(tmpSecondPlayerCards)
                 setPlayedCards(tmpPlayedCards)
+                if(card['value'] === "ACE") {
+                    setActivatePopup(true)
+                }
                 setCurrentPlayer("player-1")
             }
             return
@@ -139,6 +191,13 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
             return
         }
     }
+    
+    const handlePopupSubmit = (value) => {
+        const tmpAceValues = [...aceValues]
+        tmpAceValues.push(value)
+        setAceValues(tmpAceValues)
+        setActivatePopup(false)
+    }
 
     return (
         <Container>
@@ -147,6 +206,7 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
                     <Hand player="player-1" disabled={currentPlayer !== "player-1"} cards={firstPlayerCards} className=""/>
                     <GameArena currentPlayer={currentPlayer} totalValue={totalValue} cards={playedCards} goalNumber={gameInfo['goalNumber']} />
                     <Hand player="player-2" disabled={currentPlayer !== "player-2"} cards={secondPlayerCards} className=""/>
+                    <Popup activate={activatePopup} handleSubmit={handlePopupSubmit} />
                 </GamePlayAreaContainer>
             </DragDropContext>
         </Container>
