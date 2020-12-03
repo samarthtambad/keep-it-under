@@ -4,7 +4,7 @@ An original two-player strategy card game I created that derives inspiration fro
 
 > Check out the live demo [here](https://samarthtambad.github.io/keep-it-under/).
 
-<img style="max-width: 700px;display: block;margin: auto;" src="screenshot.png" width="400px">
+<img style="display: block;margin:auto;" src="screenshot.png" width="600px">
 
 ## Game Rules
 
