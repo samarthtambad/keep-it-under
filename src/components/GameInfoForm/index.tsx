@@ -12,7 +12,7 @@ interface FormElementProps {
     label: string,
     validate: object,
     placeholder?: string,
-    onChange: (data: any) => void
+    onChange: (id:string, value:any) => void
 }
 
 const FormElement: React.FC<FormElementProps> = ({id, type, data, label, validate, placeholder, onChange}) => {
@@ -24,8 +24,17 @@ const FormElement: React.FC<FormElementProps> = ({id, type, data, label, validat
         const err = validate[id](fieldValue)
         setValue(fieldValue)
         setError(err)
-        onChange(event)
+        onChange(id, fieldValue)
     }
+
+    useEffect(() => {
+        if(id === "goalNumber" || id === "numCards"){
+            const fieldValue = data[id]
+            const err = validate[id](fieldValue)
+            setValue(fieldValue)
+            setError(err)   
+        }
+    }, [data, id, validate])
 
     return (
         <div className="input-group input-group-sm mb-3">
@@ -57,11 +66,14 @@ const GameInforForm: React.FC<GameInfoProps> = ({initialValues, onSubmit, classN
         numCards: (value) => validateNumberInRange("Number of cards", value, Math.ceil(values['goalNumber']/5), 26)
     })
     
-    const handleOnChange = (event) => {
-        const fieldName = event.target.id
-        const fieldType = event.target.type
-        const fieldValue = (fieldType === "number") ? parseInt(event.target.value) : event.target.value
-        setValues({...values, [fieldName]:fieldValue })
+    const handleOnChange = (id, value) => {
+        const fieldName = id
+        const fieldValue = value
+        if(fieldName === "goalNumber") {
+            setValues({...values, [fieldName]:fieldValue, "numCards": Math.ceil(value/5) })
+        } else {
+            setValues({...values, [fieldName]:fieldValue })
+        }
     }
 
     useEffect(() => {

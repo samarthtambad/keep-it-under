@@ -20,8 +20,8 @@ const App: React.FC = () => {
   const [gameInfo, setGameInfo] = useState({
         firstPlayerName: "",
         secondPlayerName: "",
-        goalNumber: 0,
-        numCards: 0
+        goalNumber: 21,
+        numCards: 10
     })
 
   const handleGameInfoFormSubmit = (data) => {
