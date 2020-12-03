@@ -2,6 +2,10 @@
 
 An original two-player strategy card game I created that derives inspiration from Blackjack and Nim. The app is built using React.
 
+> Check out the live demo [here](https://samarthtambad.github.io/keep-it-under/).
+
+<img style="max-width: 600px;display: block;margin: auto;" src="screenshot.png ">
+
 ## Game Rules
 
 1. Pick a goal number (G: between 21 and 120) and pick the number of cards (N: between G/5 and 26) to be dealt to each player. Then start the game.
