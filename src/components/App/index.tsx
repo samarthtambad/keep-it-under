@@ -47,13 +47,13 @@ const App: React.FC = () => {
               <Rule>Pick a goal number (G: [21, 120]) and pick the number of cards (N: [G/5, 26]) to be dealt to each player. Then start the game.</Rule>
               <Rule>
                 Each player is dealt (face up) N cards randomly picked from a deck of 52 cards. <i>Each card has an associated value (2-10 have corresponding value, J/Q/K have value of 10 and ACE can have a value of 1 or 11). 
-                (<b>Note:</b> The player will be able to pick a value for ACE (1 or 11) while making a move) </i>
+                (<b>Note:</b>  The player to whom the ACE belongs will be able to pick a value for it (1 or 11) when making a move) </i>
               </Rule>
               <Rule>
                 The first player will make the first move. Players take turns and play a card from their hand by dragging it to the game arena.
               </Rule>
               <Rule>
-                The total value of cards played cannot exceed the goal value (G). The player whose move raises the total value above G loses and the other player wins.
+                The player whose move raises the total value above G loses and the other player wins.
               </Rule>
             </RulesList>
           </GameRulesContainer>
