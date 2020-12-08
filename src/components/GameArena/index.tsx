@@ -32,14 +32,13 @@ const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, cards, 
   const [player, setPlayer] = useState(currentPlayer)
 
   useEffect(() => {
+    console.log(currentPlayer)
     if(currentPlayer === "player-1" && totalValue === 0){
       setPlayer("")
     } else if(currentPlayer !== "over") {
-      if(totalValue === goalNumber) {
-        setPlayer(currentPlayer === "player-1" ? "player-2" : "player-1")
-      } else {
-        setPlayer(currentPlayer)
-      }
+      setPlayer(currentPlayer)
+    } else if(totalValue === goalNumber) {
+      setPlayer(player === "player-1" ? "player-2" : "player-1")
     }
   }, [currentPlayer, totalValue])
 
@@ -59,7 +58,7 @@ const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, cards, 
               </GameStatusArea>
               <GameInfoArea className="col-sm-5 pl-5">
                 <h5 className="text-right"><span className="text-muted">Goal Number: </span> {goalNumber}</h5>
-                <h5 className="text-right"><span className="text-muted">Last Move: </span> {player.split("-").join(" ").toUpperCase()}</h5>
+                <h5 className="text-right"><span className="text-muted">Move: </span> {player.split("-").join(" ").toUpperCase()}</h5>
               </GameInfoArea>
               <CardsPlayedListContainer>
                 <Hand height={85} player="" disabled={true} cards={cards} className="pl-3 pr-3"/>
