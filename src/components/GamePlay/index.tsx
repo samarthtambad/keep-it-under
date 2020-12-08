@@ -203,9 +203,9 @@ const GamePlay: React.FC<GamePlayProps> = ({gameInfo, startNewGame, onGameStart,
         <Container>
             <DragDropContext onDragEnd={onDragEnd}>
                 <GamePlayAreaContainer className="border rounded p-3">
-                    <Hand player="player-1" disabled={currentPlayer !== "player-1"} cards={firstPlayerCards} className=""/>
+                    <Hand height={100} player="player-1" disabled={currentPlayer !== "player-1"} cards={firstPlayerCards} className="border rounded p-3"/>
                     <GameArena currentPlayer={currentPlayer} totalValue={totalValue} cards={playedCards} goalNumber={gameInfo['goalNumber']} />
-                    <Hand player="player-2" disabled={currentPlayer !== "player-2"} cards={secondPlayerCards} className=""/>
+                    <Hand height={100} player="player-2" disabled={currentPlayer !== "player-2"} cards={secondPlayerCards} className="border rounded p-3"/>
                     <Popup activate={activatePopup} handleSubmit={handlePopupSubmit} />
                 </GamePlayAreaContainer>
             </DragDropContext>
