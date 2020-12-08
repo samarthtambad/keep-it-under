@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Droppable } from 'react-beautiful-dnd'
 import {Card} from '../../utils/cards'
 // import CardItem from '../CardItem';
+import Hand from '../Hand'
 
 const Container = styled.div`
   min-height: 200px;
@@ -11,10 +12,9 @@ const Container = styled.div`
 const CardDropArea = styled.div`
   min-height: 200px;
 `
-// const CardItemList = styled.div`
-//   display: flex;
-//   overflow: scroll;
-// `
+const CardsPlayedListContainer = styled.div`
+  width: 100%;
+`
 const ArenaContainer = styled.div``
 const GameInfoArea = styled.div``
 const GameStatusArea = styled.div``
@@ -57,6 +57,9 @@ const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, cards, 
                 <h5 className="text-right"><span className="text-muted">Goal Number: </span> {goalNumber}</h5>
                 <h5 className="text-right"><span className="text-muted">Last Move: </span> {player.split("-").join(" ").toUpperCase()}</h5>
               </GameInfoArea>
+              <CardsPlayedListContainer>
+                <Hand height={85} player="" disabled={true} cards={cards} className="pl-3 pr-3"/>
+              </CardsPlayedListContainer>
             </ArenaContainer>
             {provided.placeholder}
           </CardDropArea>
