@@ -35,7 +35,11 @@ const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, cards, 
     if(currentPlayer === "player-1" && totalValue === 0){
       setPlayer("")
     } else if(currentPlayer !== "over") {
+      if(totalValue === goalNumber) {
+        setPlayer(currentPlayer === "player-1" ? "player-2" : "player-1")
+      } else {
         setPlayer(currentPlayer)
+      }
     }
   }, [currentPlayer, totalValue])
 
@@ -50,8 +54,8 @@ const GameArena: React.FC<GameArenaProps> = ({currentPlayer, totalValue, cards, 
                   <h6 className="d-inline-block w-50">GAME ARENA</h6>
                   <h6 className="d-inline-block h6 w-50 text-muted text-right"><small><i>Drop your cards into this area</i></small></h6>
                 </GameArenaTitleContainer>
-                <h1 className="text-center display-1">{(totalValue <= goalNumber) ? totalValue : "Game Over!"}</h1>
-                <h1 className="text-center text-muted">{(totalValue <= goalNumber) ? "Total Value" : `${player.split("-").join(" ").toUpperCase()} wins`}</h1>
+                <h1 className="text-center display-1">{(totalValue < goalNumber) ? totalValue : "Game Over!"}</h1>
+                <h1 className="text-center text-muted">{(totalValue < goalNumber) ? "Total Value" : `${player.split("-").join(" ").toUpperCase()} wins`}</h1>
               </GameStatusArea>
               <GameInfoArea className="col-sm-5 pl-5">
                 <h5 className="text-right"><span className="text-muted">Goal Number: </span> {goalNumber}</h5>
